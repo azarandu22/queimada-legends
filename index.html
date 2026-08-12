@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Queimada Legends</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app">
+    <section id="menuScreen" class="screen active">
+      <div class="logo">
+        <span>🔥</span>
+        <h1>QUEIMADA<br><strong>LEGENDS</strong></h1>
+      </div>
+      <p class="subtitle">Esporte • Poderes • Estratégia</p>
+      <div class="menu-buttons">
+        <button id="playBtn" class="primary">⚡ JOGAR</button>
+        <button id="charactersBtn">👤 PERSONAGENS</button>
+        <button id="championshipBtn">🏆 CAMPEONATO</button>
+        <button id="optionsBtn">⚙️ OPÇÕES</button>
+      </div>
+      <p class="version">Protótipo 0.1</p>
+    </section>
+
+    <section id="characterScreen" class="screen">
+      <header class="topbar"><button class="backBtn">←</button><h2>ESCOLHA SEU JOGADOR</h2></header>
+      <div id="characterGrid" class="character-grid"></div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div class="hud">
+        <div class="team-score"><span>AZUL</span><strong id="playerScore">0</strong></div>
+        <div class="round">ROUND <span id="roundNumber">1</span></div>
+        <div class="team-score enemy"><span>VERMELHO</span><strong id="enemyScore">0</strong></div>
+      </div>
+
+      <div id="arena">
+        <div class="midline"></div>
+        <div class="team-label left">SEU TIME</div>
+        <div class="team-label right">RIVAL</div>
+        <div id="player" class="player blue">⚡</div>
+        <div id="enemy" class="player red">🔥</div>
+        <div id="ball" class="ball">🏐</div>
+        <div id="powerText" class="power-text"></div>
+      </div>
+
+      <div class="mobile-controls">
+        <div class="joystick-area">
+          <button id="upBtn">▲</button>
+          <button id="leftBtn">◀</button>
+          <button id="rightBtn">▶</button>
+          <button id="downBtn">▼</button>
+        </div>
+        <div class="action-buttons">
+          <button id="defendBtn" class="action defend">🛡️</button>
+          <button id="powerBtn" class="action power">⚡</button>
+          <button id="throwBtn" class="action throw">🏐</button>
+        </div>
+      </div>
+      <div class="desktop-hint">Teclas: WASD/Setas = mover • Espaço = arremessar • D = defender • E = poder</div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="result-card">
+        <div id="resultIcon">🏆</div>
+        <h2 id="resultTitle">VITÓRIA!</h2>
+        <p id="resultMessage">Você venceu a rodada.</p>
+        <div class="reward">⭐ +50 XP</div>
+        <button id="againBtn" class="primary">JOGAR NOVAMENTE</button>
+        <button id="menuBtn">MENU PRINCIPAL</button>
+      </div>
+    </section>
+  </main>
+  <script src="js/game.js"></script>
+</body>
+</html>
