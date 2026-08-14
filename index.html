@@ -3,241 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Queimada Legends</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+<main id="app">
 
-    <main id="app">
-
-        <!-- =========================
-             MENU PRINCIPAL
-        ========================== -->
-
-        <section id="menuScreen" class="screen active">
-
-            <div class="logo">
-                <h1>🔥 QUEIMADA LEGENDS</h1>
-
-                <p>
-                    Esporte • Poderes • Estratégia
-                </p>
+    <!-- ================= MENU PRINCIPAL ================= -->
+    <section id="menuScreen" class="screen active">
+        <div class="logo">
+            <span>🔥</span>
+            <div>
+                <h1>QUEIMADA<br><strong>LEGENDS</strong></h1>
+                <p>Esporte • Poderes • Estratégia</p>
             </div>
+        </div>
 
-            <div class="menu-buttons">
+        <div class="menu-buttons">
+            <button id="playBtn" class="main-btn primary" type="button">
+                ⚡ JOGAR 3x3
+                <small>Partida rápida</small>
+            </button>
 
-                <button id="playBtn" class="main-btn">
-                    ⚡ JOGAR 3x3
-                </button>
+            <button id="championshipBtn" class="main-btn" type="button">
+                🏆 CAMPEONATO
+                <small>Modo campeonato</small>
+            </button>
 
-                <button id="charactersBtn" class="main-btn">
-                    👤 PERSONAGENS
-                </button>
+            <button id="charactersBtn" class="main-btn" type="button">
+                👤 PERSONAGENS
+                <small>Escolha seu personagem</small>
+            </button>
 
-                <button id="optionsBtn" class="main-btn">
-                    ⚙️ OPÇÕES
-                </button>
+            <button id="optionsBtn" class="main-btn" type="button">
+                ⚙️ OPÇÕES
+                <small>Configurações</small>
+            </button>
+        </div>
 
+        <p class="version">Protótipo 0.3 • Quadra vertical • Modo 3x3</p>
+    </section>
+
+    <!-- ================= PERSONAGENS ================= -->
+    <section id="characterScreen" class="screen">
+        <div class="topbar">
+            <button id="backFromCharactersBtn" class="backBtn" type="button">←</button>
+            <h2>👤 PERSONAGENS</h2>
+        </div>
+        <div class="character-page">
+            <p class="screen-subtitle">Escolha o personagem que você quer levar para a partida.</p>
+            <div id="characterGrid" class="character-grid"></div>
+        </div>
+    </section>
+
+    <!-- ================= JOGO ================= -->
+    <section id="gameScreen" class="screen">
+        <div class="hud">
+            <div class="team-score"><span>AZUL</span><strong id="playerScore">0</strong></div>
+            <div class="round">ROUND <span id="roundNumber">1</span></div>
+            <div class="team-score enemy"><span>VERMELHO</span><strong id="enemyScore">0</strong></div>
+        </div>
+
+        <div id="gameArea"></div>
+        <div id="court">
+            <div class="midline"></div>
+            <div class="team-label left">SEU TIME</div>
+            <div class="team-label right">RIVAL</div>
+            <div id="players"></div>
+            <div id="ball" class="ball">🏐</div>
+            <div id="message" class="power-text"></div>
+        </div>
+
+        <div class="mobile-controls">
+            <div class="joystick-area">
+                <button id="upBtn" type="button">▲</button>
+                <button id="leftBtn" type="button">◀</button>
+                <button id="rightBtn" type="button">▶</button>
+                <button id="downBtn" type="button">▼</button>
             </div>
-
-            <p class="version">
-                Protótipo 0.3 • Quadra vertical • Modo 3x3
-            </p>
-
-        </section>
-
-
-        <!-- =========================
-             TELA DE PERSONAGENS
-        ========================== -->
-
-        <section id="characterScreen" class="screen">
-
-            <div class="screen-header">
-
-                <button id="backFromCharactersBtn" class="back-btn">
-                    ← VOLTAR
-                </button>
-
-                <h2>👤 PERSONAGENS</h2>
-
+            <div class="action-buttons">
+                <button id="defendBtn" class="action defend" type="button">🛡️</button>
+                <button id="powerBtn" class="action power" type="button">⚡</button>
+                <button id="throwBtn" class="action throw" type="button">🏐</button>
             </div>
-
-            <div id="characterGrid" class="character-grid">
-
-                <!-- Os personagens serão colocados pelo JavaScript -->
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             TELA DO JOGO
-        ========================== -->
-
-        <section id="gameScreen" class="screen">
-
-            <!-- PLACAR -->
-
-            <div class="hud">
-
-                <div class="team-score">
-
-                    <span>AZUL</span>
-
-                    <strong id="playerScore">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="round">
-
-                    ROUND
-
-                    <span id="roundNumber">
-                        1
-                    </span>
-
-                </div>
-
-
-                <div class="team-score enemy">
-
-                    <span>VERMELHO</span>
-
-                    <strong id="enemyScore">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- QUADRA -->
-            <div id="gameArea"></div>
-            <div id="court">
-
-                <div class="midline"></div>
-
-                <div class="team-label left">
-                    SEU TIME
-                </div>
-
-                <div class="team-label right">
-                    RIVAL
-                </div>
-
-
-                <!-- OS JOGADORES SERÃO CRIADOS PELO JAVASCRIPT -->
-
-                <div id="players"></div>
-
-
-                <!-- BOLA -->
-
-                <div id="ball" class="ball">
-                    🏐
-                </div>
-
-
-                <!-- MENSAGEM -->
-
-                <div id="message" class="power-text"></div>
-
-            </div>
-
-
-            <!-- CONTROLES -->
-
-            <div class="mobile-controls">
-
-                <div class="joystick-area">
-
-                    <button id="upBtn">
-                        ▲
-                    </button>
-
-                    <button id="leftBtn">
-                        ◀
-                    </button>
-
-                    <button id="rightBtn">
-                        ▶
-                    </button>
-
-                    <button id="downBtn">
-                        ▼
-                    </button>
-
-                </div>
-
-
-                <div class="action-buttons">
-
-                    <button id="defendBtn" class="action defend">
-                        🛡️
-                    </button>
-
-                    <button id="powerBtn" class="action power">
-                        ⚡
-                    </button>
-
-                    <button id="throwBtn" class="action throw">
-                        🏐
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <p class="desktop-hint">
-                Teclas: WASD/Setas = mover • Espaço = arremessar •
-                Shift = defender • E = poder
-            </p>
-
-        </section>
-
-
-        <!-- =========================
-             TELA FINAL
-        ========================== -->
-
-        <section id="resultScreen" class="screen">
-
-            <div class="result-card">
-
-                <h1 id="resultTitle">
-                    FIM DE JOGO
-                </h1>
-
-                <p id="resultMessage"></p>
-
-                <button id="restartBtn" class="main-btn">
-                    🔄 JOGAR NOVAMENTE
-                </button>
-
-                <button id="menuBtn" class="main-btn">
-                    ← MENU
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script src="js/game.js"></script>
-
+        </div>
+        <p class="desktop-hint">Teclas: WASD/Setas = mover • Espaço = arremessar • Shift = defender • R = passar • E = poder</p>
+    </section>
+
+    <!-- ================= RESULTADO ================= -->
+    <section id="resultScreen" class="screen">
+        <div class="result-card">
+            <h1 id="resultTitle">FIM DE JOGO</h1>
+            <p id="resultMessage"></p>
+            <button id="restartBtn" class="main-btn primary" type="button">🔄 JOGAR NOVAMENTE</button>
+            <button id="menuBtn" class="main-btn" type="button">← MENU</button>
+        </div>
+    </section>
+
+    <!-- ================= CAMPEONATO ================= -->
+    <section id="championshipScreen" class="screen">
+        <div class="topbar">
+            <button class="backBtn" type="button" onclick="document.getElementById('championshipScreen').classList.remove('active');document.getElementById('championshipScreen').style.display='none';document.getElementById('menuScreen').classList.add('active');document.getElementById('menuScreen').style.display='flex';">←</button>
+            <h2>🏆 CAMPEONATO</h2>
+        </div>
+        <div class="placeholder-page">
+            <div class="placeholder-icon">🏆</div>
+            <h1>CAMPEONATO</h1>
+            <p>Modo campeonato em desenvolvimento.</p>
+            <p class="muted">A partida rápida 3x3 já está disponível.</p>
+        </div>
+    </section>
+
+    <!-- ================= OPÇÕES ================= -->
+    <section id="optionsScreen" class="screen">
+        <div class="topbar">
+            <button class="backBtn" type="button" onclick="document.getElementById('optionsScreen').classList.remove('active');document.getElementById('optionsScreen').style.display='none';document.getElementById('menuScreen').classList.add('active');document.getElementById('menuScreen').style.display='flex';">←</button>
+            <h2>⚙️ OPÇÕES</h2>
+        </div>
+        <div class="placeholder-page">
+            <div class="placeholder-icon">⚙️</div>
+            <h1>OPÇÕES</h1>
+            <p>Configurações em desenvolvimento.</p>
+            <p class="muted">O menu foi preparado para receber as próximas opções.</p>
+        </div>
+    </section>
+
+</main>
+<script src="js/game.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menu = document.getElementById('menuScreen');
+        const championship = document.getElementById('championshipScreen');
+        const options = document.getElementById('optionsScreen');
+
+        document.getElementById('championshipBtn').addEventListener('click', function () {
+            document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
+            championship.classList.add('active');
+            championship.style.display = 'flex';
+        });
+
+        document.getElementById('optionsBtn').addEventListener('click', function () {
+            document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
+            options.classList.add('active');
+            options.style.display = 'flex';
+        });
+    });
+</script>
 </body>
 </html>
