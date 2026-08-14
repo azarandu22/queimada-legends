@@ -9,7 +9,6 @@
 <body>
 <main id="app">
 
-    <!-- ================= MENU PRINCIPAL ================= -->
     <section id="menuScreen" class="screen active">
         <div class="logo">
             <span>🔥</span>
@@ -44,7 +43,6 @@
         <p class="version">Protótipo 0.3 • Quadra vertical • Modo 3x3</p>
     </section>
 
-    <!-- ================= PERSONAGENS ================= -->
     <section id="characterScreen" class="screen">
         <div class="topbar">
             <button id="backFromCharactersBtn" class="backBtn" type="button">←</button>
@@ -56,7 +54,6 @@
         </div>
     </section>
 
-    <!-- ================= JOGO ================= -->
     <section id="gameScreen" class="screen">
         <div class="hud">
             <div class="team-score"><span>AZUL</span><strong id="playerScore">0</strong></div>
@@ -90,7 +87,6 @@
         <p class="desktop-hint">Teclas: WASD/Setas = mover • Espaço = arremessar • Shift = defender • R = passar • E = poder</p>
     </section>
 
-    <!-- ================= RESULTADO ================= -->
     <section id="resultScreen" class="screen">
         <div class="result-card">
             <h1 id="resultTitle">FIM DE JOGO</h1>
@@ -100,7 +96,6 @@
         </div>
     </section>
 
-    <!-- ================= CAMPEONATO ================= -->
     <section id="championshipScreen" class="screen">
         <div class="topbar">
             <button class="backBtn" type="button" onclick="document.getElementById('championshipScreen').classList.remove('active');document.getElementById('championshipScreen').style.display='none';document.getElementById('menuScreen').classList.add('active');document.getElementById('menuScreen').style.display='flex';">←</button>
@@ -114,7 +109,6 @@
         </div>
     </section>
 
-    <!-- ================= OPÇÕES ================= -->
     <section id="optionsScreen" class="screen">
         <div class="topbar">
             <button class="backBtn" type="button" onclick="document.getElementById('optionsScreen').classList.remove('active');document.getElementById('optionsScreen').style.display='none';document.getElementById('menuScreen').classList.add('active');document.getElementById('menuScreen').style.display='flex';">←</button>
@@ -131,23 +125,77 @@
 </main>
 <script src="js/game.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const menu = document.getElementById('menuScreen');
-        const championship = document.getElementById('championshipScreen');
-        const options = document.getElementById('optionsScreen');
-
-        document.getElementById('championshipBtn').addEventListener('click', function () {
-            document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-            championship.classList.add('active');
-            championship.style.display = 'flex';
+(function () {
+    function hideAllScreens() {
+        document.querySelectorAll('.screen').forEach(function (screen) {
+            screen.classList.remove('active');
+            screen.style.display = 'none';
         });
+    }
 
-        document.getElementById('optionsBtn').addEventListener('click', function () {
-            document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-            options.classList.add('active');
-            options.style.display = 'flex';
+    function showMenu() {
+        hideAllScreens();
+        var menu = document.getElementById('menuScreen');
+        menu.classList.add('active');
+        menu.style.display = 'flex';
+    }
+
+    function showCharacters() {
+        hideAllScreens();
+        var screen = document.getElementById('characterScreen');
+        screen.classList.add('active');
+        screen.style.display = 'flex';
+
+        var grid = document.getElementById('characterGrid');
+        if (!grid || typeof characters === 'undefined') return;
+
+        grid.innerHTML = '';
+        characters.forEach(function (character) {
+            var card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'character-card';
+            card.innerHTML = '<strong>' + character.name + '</strong><span>' + character.description + '</span>';
+            card.addEventListener('click', function () {
+                if (typeof selectedCharacter !== 'undefined') {
+                    selectedCharacter = character;
+                }
+                grid.querySelectorAll('.character-card').forEach(function (item) {
+                    item.classList.remove('selected');
+                });
+                card.classList.add('selected');
+            });
+            grid.appendChild(card);
         });
-    });
+    }
+
+    function startMatch() {
+        if (typeof startPreGame === 'function') {
+            startPreGame();
+        } else {
+            alert('O game.js não carregou corretamente. Verifique o arquivo js/game.js.');
+        }
+    }
+
+    function setupMenu() {
+        var play = document.getElementById('playBtn');
+        var chars = document.getElementById('charactersBtn');
+        var backChars = document.getElementById('backFromCharactersBtn');
+        var restart = document.getElementById('restartBtn');
+        var menuBtn = document.getElementById('menuBtn');
+
+        if (play) play.onclick = startMatch;
+        if (chars) chars.onclick = showCharacters;
+        if (backChars) backChars.onclick = showMenu;
+        if (restart) restart.onclick = startMatch;
+        if (menuBtn) menuBtn.onclick = showMenu;
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupMenu);
+    } else {
+        setupMenu();
+    }
+})();
 </script>
 </body>
 </html>
